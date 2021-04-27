@@ -23,12 +23,15 @@ const ExerciseSchema = new Schema({
     },
     distance: {
         type: Number,
+    },
+    day: {
+        type: Date,
     }
 
 
 
 });
 
-const Book = mongoose.model("Book", BookSchema);
+const Exercise= mongoose.model("exercise", ExerciseSchema);
 
-module.exports = Book;
+module.exports = Exercise;
