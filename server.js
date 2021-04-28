@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const logger = require("morgan");
+const router = require("./controllers")
 
 const PORT = process.env.PORT || 3000
 
@@ -14,7 +15,7 @@ app.use(express.json());
 app.use(logger("dev"));
 
 app.use(express.static("public"));
-// app.use(express.static(path.join(__dirname, 'public')));
+
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutTracker", {
   useNewUrlParser: true,
@@ -24,8 +25,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutTracker"
 
 
 // routes
-app.use(require("./controllers/exercise.js"));
-
+app.use(router)
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });
