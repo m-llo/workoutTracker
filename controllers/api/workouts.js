@@ -1,19 +1,29 @@
 const router = require("express").Router();
 const Workout = require("../../models/Workout");
-// const Exercise = require("../../models/Exercise")
-const db = require("../../models");
-
+ 
 
 router.get("/", (req, res) => {
   Workout.findOne({}).sort({ date: -1 })
   .then(dbWorkout => {
-    console.log(dbWorkout);
-    res.status(200).json(dbWorkout)
+    console.log("workout data", dbWorkout);
+    res.status(200)
+    // json(dbWorkout)
   })
-  .catch(({ message }) => {
-    console.log(message);
+  .catch(err => {
+    res.json(err);
+    return
   });
 });
+
+// router.get("/range", (req, res) => {
+//   Workout.find({})
+//     .then(dbWorkout => {
+//       res.json(dbWorkout);
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
+// })
 
 router.get("/:id", (req, res) => {
   const id = req.params.id
@@ -22,8 +32,8 @@ router.get("/:id", (req, res) => {
     console.log(dbWorkout);
     res.status(200).json(dbWorkout)
   })
-  .catch(({ message }) => {
-    console.log(message);
+  .catch(err => {
+    res.json(err);
   });
 });
 
@@ -31,11 +41,12 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   Workout.create(req.body)
     .then(dbWorkout => {
-      console.log(dbWorkout);
-      res.status(200).json(dbWorkout)
+      // console.log(dbWorkout);
+       res.json(dbWorkout)
+      
     })
-    .catch(({ message }) => {
-      console.log(message);
+    .catch(err => {
+      res.json(err);
     });
 });
 
@@ -50,16 +61,6 @@ router.put("/:id", (req, res) => {
     });
 })
 
-router.get("/range", (req, res) => {
-  Workout.find({})
-    .then(dbWorkout => {
-      res.json(dbWorkout);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-
-})
 
 
 
