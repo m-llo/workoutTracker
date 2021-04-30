@@ -4,17 +4,18 @@ const Workout = require("../models/Workout");
 
 
 
-router.get("/", (req, res) => {
-  Workout.findOne({}).sort({ date: -1 })
-  .then(dbWorkout => {
-    console.log("workout data", dbWorkout);
-   return res.status(200).json(dbWorkout)
-  })
-  .catch(err => {
-    res.json(err);
-    return
-  });
-});
+// router.get("/", (req, res) => {
+//   Workout.findOne({}).sort({ date: -1 })
+//   .then(dbWorkout => {
+//     console.log("workout data", dbWorkout);
+//     res.status(200)
+//   //  .json(dbWorkout)
+//   })
+//   .catch(err => {
+//     res.json(err);
+   
+//   });
+// });
 
 
 router.get("/exercise", (req, res) => {
@@ -34,15 +35,15 @@ router.get("/stats", (req, res) => {
 });
 
 
-router.get("/range", (req, res) => {
-  Workout.find({})
-    .then(dbWorkout => {
-      res.json(dbWorkout);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+// router.get("/range", (req, res) => {
+//   Workout.find({})
+//     .then(dbWorkout => {
+//       res.json(dbWorkout);
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
 
-})
+// })
 
 module.exports = router;
